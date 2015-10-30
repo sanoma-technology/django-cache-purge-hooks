@@ -19,7 +19,7 @@ invalidation.  Now there is only one hard thing :neckbeard:
 Support
 =======
 
-django-cache-purge hooks supports Django 1.4 - 1.7 and python versions 2.6 - 2.7
+django-cache-purge hooks supports Django 1.4 - 1.8 and python versions 2.6 - 2.7
 
 Usage
 =====
