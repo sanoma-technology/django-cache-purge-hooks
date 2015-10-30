@@ -11,8 +11,8 @@ VARNISHADM_SECRET = getattr(settings, 'VARNISHADM_SECRET', '/etc/varnish/secret'
 VARNISHADM_SITE_DOMAIN = getattr(settings, 'VARNISHADM_SITE_DOMAIN', '.*')
 VARNISHADM_BIN = getattr(settings, 'VARNISHADM_ADM_BIN', '/usr/bin/varnishadm')
 
-class VarnishManager(object):
 
+class VarnishManager(object):
     def purge(self, url):
         command = 'ban req.http.host ~ "{host}" && req.url ~ "{url}"'.format(
             host=VARNISHADM_SITE_DOMAIN.encode('ascii'),
