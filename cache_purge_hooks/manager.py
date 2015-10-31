@@ -20,9 +20,9 @@ class CacheManager(object):
     def __enter__(self):
         return self
 
-        def __exit__(self, *args):
-            if hasattr(self.manager, 'close'):
-                self.manager.close()
+    def __exit__(self, *args):
+        if hasattr(self.manager, 'close'):
+            self.manager.close()
 
     def purge(self, command):
         self.manager.purge(command)
