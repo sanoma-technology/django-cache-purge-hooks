@@ -39,7 +39,7 @@ def __post_save_hook(model, func, instance, **kwargs):
         pass
     with CacheManager() as cm:
         for url in urls:
-            logging.info("expire:", url)
+            logging.info("expire: %s", url)
             cm.purge(url)
 
 
@@ -51,7 +51,7 @@ def __post_delete_hook(model, func, instance, **kwargs):
     urls = instance.__cache_prehook_urls
     with CacheManager() as cm:
         for url in urls:
-            logging.info("expire:", url)
+            logging.info("expire: %s", url)
             cm.purge(url)
 
 
