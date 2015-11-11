@@ -19,7 +19,7 @@ invalidation.  Now there is only one hard thing :neckbeard:
 Support
 =======
 
-django-cache-purge hooks supports Django 1.4 - 1.7 and python versions 2.6 - 2.7
+django-cache-purge hooks supports Django 1.4 - 1.8 and python versions 2.6 - 2.7
 
 Usage
 =====
@@ -108,7 +108,7 @@ need that installed on your machine for it to work
 
 All settings are optional.
 
-- VARNISHADM_HOST: host of varnish management interface. Defaults to `"localhost"`
+- VARNISHADM_HOST: host or hosts of varnish management interface. Defaults to `"localhost"`
 - VARNISHADM_PORT: port of varnish management interface. Defaults to `6082`
 - VARNISHADM_SECRET: file path of varnish secret. Be sure to give read permission to your
   django process. Defaults to `"/etc/varnish/secret"`

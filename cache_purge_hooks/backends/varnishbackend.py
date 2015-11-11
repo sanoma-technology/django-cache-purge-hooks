@@ -11,8 +11,8 @@ VARNISHADM_SECRET = getattr(settings, 'VARNISHADM_SECRET', '/etc/varnish/secret'
 VARNISHADM_SITE_DOMAIN = getattr(settings, 'VARNISHADM_SITE_DOMAIN', '.*')
 VARNISHADM_BIN = getattr(settings, 'VARNISHADM_ADM_BIN', '/usr/bin/varnishadm')
 
-class VarnishManager(object):
 
+class VarnishManager(object):
     def purge(self, url):
         command = 'ban req.http.host ~ "{host}" && req.url ~ "{url}"'.format(
             host=VARNISHADM_SITE_DOMAIN.encode('ascii'),
@@ -24,12 +24,17 @@ class VarnishManager(object):
         self.purge('.*')
 
     def send_command(self, command):
-        args = [VARNISHADM_BIN, '-S', VARNISHADM_SECRET, '-T', VARNISHADM_HOST+':'+str(VARNISHADM_PORT), command]
-        try:
-            subprocess.check_call(args)
-        except subprocess.CalledProcessError as error:
-            logger.error('Command "{0}" returned {1}'.format(' '.join(args), error.returncode))
-            return False
+        if not isinstance(VARNISHADM_HOST, list):
+            varnish_hosts = []
+            varnish_hosts.append(VARNISHADM_HOST)
         else:
-            logger.debug('Command "{0}" executed successfully'.format(' '.join(args)))
-            return True
+            varnish_hosts = VARNISHADM_HOST
+
+        for varnish_host in varnish_hosts:
+            args = [VARNISHADM_BIN, '-S', VARNISHADM_SECRET, '-T', varnish_host + ':' + str(VARNISHADM_PORT), command]
+            try:
+                subprocess.check_call(args)
+            except subprocess.CalledProcessError as error:
+                logger.error('Command "{0}" returned {1}'.format(' '.join(args), error.returncode))
+            else:
+                logger.debug('Command "{0}" executed successfully'.format(' '.join(args)))

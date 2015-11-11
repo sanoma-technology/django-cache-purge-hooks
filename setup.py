@@ -9,17 +9,17 @@ except ImportError:
 
 
 setup(
-    name = 'django-cache-purge-hooks',
-    version = '0.4.2',
-    packages = find_packages(),
-    author = 'Shu Zong Chen',
-    author_email = 'shu.chen@freelancedreams.com',
-    description = 'Drop-in cache (e.g. varnish) purging hooks for django',
-    long_description = "Pluggable django app to purge caches.",
-    license = "MIT",
-    keywords = "django cache purge varnish nginx",
-    install_requires = install_requires,
-    classifiers = [
+    name='django-cache-purge-hooks',
+    version='0.4.2',
+    packages=find_packages(),
+    author='Shu Zong Chen',
+    author_email='shu.chen@freelancedreams.com',
+    description='Drop-in cache (e.g. varnish) purging hooks for django',
+    long_description="Pluggable django app to purge caches.",
+    license="MIT",
+    keywords="django cache purge varnish nginx",
+    install_requires=install_requires,
+    classifiers=[
         'Development Status :: 5 - Production/Stable',
         'Environment :: Web Environment',
         'Framework :: Django',
@@ -30,5 +30,5 @@ setup(
         'Topic :: Software Development :: Libraries :: Application Frameworks',
         'Topic :: Software Development :: Libraries :: Python Modules',
     ],
-    url = 'https://github.com/RealGeeks/django-cache-purge-hooks'
+    url='https://github.com/RealGeeks/django-cache-purge-hooks'
 )
