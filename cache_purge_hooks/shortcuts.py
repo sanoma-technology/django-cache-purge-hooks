@@ -32,6 +32,8 @@ def __pre_save_hook(model, func, instance, sender, **kwargs):
 
 
 def __post_save_hook(model, func, instance, **kwargs):
+    if kwargs['raw']:  # Ignore fixture data
+        return
     urls = set(__get_urls(instance, func))
     try:
         urls = urls.union(instance.__cache_prehook_urls)
