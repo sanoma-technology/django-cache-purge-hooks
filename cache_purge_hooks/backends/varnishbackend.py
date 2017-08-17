@@ -33,7 +33,10 @@ class VarnishManager(object):
         for varnish_host in varnish_hosts:
             args = [VARNISHADM_BIN, '-S', VARNISHADM_SECRET, '-T', varnish_host + ':' + str(VARNISHADM_PORT), command]
             try:
-                subprocess.check_call(args)
+                logger.debug('Purging: {} {}'.format(varnish_host, command)
+                # use check_output so that prints returned by varnishadm aren't logged as empty
+                # lines
+                subprocess.check_output(args)
             except subprocess.CalledProcessError as error:
                 logger.error('Command "{0}" returned {1}'.format(' '.join(args), error.returncode))
             else:
